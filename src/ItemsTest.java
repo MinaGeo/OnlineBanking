@@ -6,10 +6,12 @@ import static org.junit.Assert.*;
 
 public class ItemsTest {
     Items item1,item2;
+    Acc_Driver account;
     @Before
     public void setUp() throws Exception {
         item1=new Items("pen","it1",100,5);
         item2=new Items("checkbook","it2",1000,1);
+        account=new Acc_Driver("12",200);
     }
 
     @Test
@@ -28,4 +30,20 @@ public class ItemsTest {
         assertEquals(expected,out);
 
     }
+    @Test
+    public void TestBuyItem1(){
+        String out= account.buyItem(item1);
+        String  expected="Item bought";
+        assertEquals(expected,out);
+
+    }
+    @Test
+    public void TestBuyItem2(){
+        String out= account.buyItem(item2);
+        String  expected="Not Enough Balance";
+        assertEquals(expected,out);
+
+    }
+
+
 }

@@ -22,14 +22,21 @@ public class Acc_Driver {
         }
     }
 
-    public void payBill(String type){
+    public String payBill(String type){
         int index=findBill(type);
         if(index!=-1){
             boolean status=bills.get(index).payBill();
             if(status) {
                 balance -= bills.get(index).getAmount();
                 bills.remove(index);
+                return "Successful transaction";
             }
+            else{
+                return "Not Enough Balance";
+            }
+        }
+        else{
+            return "Bill not found";
         }
 
     }
@@ -61,15 +68,15 @@ public class Acc_Driver {
         return out;
     }
 
-    public void buyItem(Items x){
+    public String buyItem(Items x){
         double itemPrice=x.getPrice();
         if(balance >itemPrice){
             balance -=itemPrice;
-            System.out.println("item bought");
             x.buy();
+            return "Item bought";
         }
         else{
-            System.out.println("Item not bought");
+            return "Not Enough Balance";
         }
     }
 
