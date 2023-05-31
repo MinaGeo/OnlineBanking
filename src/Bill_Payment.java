@@ -1,18 +1,18 @@
 public class Bill_Payment {
-    String type;
-    double amount;
+    String details;
+    double price;
     Acc_Driver account;
 
 
-    Bill_Payment(String type,double amount, Acc_Driver account){
-        this.type = type;
-        this.amount=amount;
+    Bill_Payment(String details,double price, Acc_Driver account){
+        this.details = details;
+        this.price=price;
         this.account=account;
     }
 
     boolean payBill(){
-        double available=account.getAmount();
-        if(available>amount){
+        double available=account.getBalance();
+        if(available>price){
            return true;
         }
         else{
@@ -21,11 +21,11 @@ public class Bill_Payment {
 
     }
 
-    public String getType(){
-        return type;
+    public String getDetails(){
+        return details;
     }
     public double getAmount(){
-        return amount;
+        return price;
     }
 
 

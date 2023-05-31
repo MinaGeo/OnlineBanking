@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 
 public class Acc_Driver {
-    double amount;
+    double balance;
     String id;
     ArrayList<Bill_Payment> bills=new ArrayList<>();
-    Acc_Driver(String id,double amount){
+    Acc_Driver(String id,double balance){
         this.id=id;
-        this.amount=amount;
+        this.balance = balance;
     }
-    public double getAmount(){
-        return amount;
+    public double getBalance(){
+        return balance;
     }
     public String getId(){
         return id;
@@ -27,16 +27,16 @@ public class Acc_Driver {
         if(index!=-1){
             boolean status=bills.get(index).payBill();
             if(status) {
-                amount -= bills.get(index).amount;
+                balance -= bills.get(index).getAmount();
                 bills.remove(index);
             }
         }
 
     }
 
-    int findBill(String type){
+    public int findBill(String type){
             for (int i = 0; i < bills.size(); i++) {
-                if (bills.get(i).getType().equals(type)) {
+                if (bills.get(i).getDetails().equals(type)) {
                     return i;
                 }
             }
@@ -45,7 +45,7 @@ public class Acc_Driver {
     String getBillsId(){
         String out="";
         for(int i=0;i<bills.size();i++){
-            out+=bills.get(i).getType();
+            out+=bills.get(i).getDetails();
             out+="\n";
         }
         return out;
@@ -63,8 +63,8 @@ public class Acc_Driver {
 
     public void buyItem(Items x){
         double itemPrice=x.getPrice();
-        if(amount>itemPrice){
-            amount-=itemPrice;
+        if(balance >itemPrice){
+            balance -=itemPrice;
             System.out.println("item bought");
             x.buy();
         }
