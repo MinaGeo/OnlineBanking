@@ -12,10 +12,6 @@ public class ItemsTest {
         item2=new Items("checkbook","it2",1000,1);
     }
 
-    @After
-    public void tearDown() throws Exception {
-    }
-
     @Test
     public void TestBuy1() {
         item1.buy();
